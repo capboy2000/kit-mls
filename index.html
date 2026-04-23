@@ -176,6 +176,8 @@ html,body{font-family:-apple-system,BlinkMacSystemFont,"Malgun Gothic","Apple SD
 .fbg-btn.r{background:var(--red);color:#fff;}
 .fbg-btn.g{background:var(--bg);color:var(--mu);}
 </style>
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -453,21 +455,21 @@ var _apps = [];
 var _flt = "all";
 var _loggedIn = false;
 var _unsub = null;
-// 앱 시작 시 자동 Firebase 연결
-window.addEventListener('load', function() {
-  var cfg = {
-  apiKey: "AIzaSyDniJbVNZ__qEmxUqElFnppWpfx8kX_E-E",
-  authDomain: "kit-mls.firebaseapp.com",
-  projectId: "kit-mls",
-  storageBucket: "kit-mls.firebasestorage.app",
-  messagingSenderId: "630878578210",
-  appId: "1:630878578210:web:7c2faa21bfabb327a88c7b"
-  };
-  loadFirebase(function() { initFb(cfg); });
-});  
 var _FBKEY = "kit_fb2025";
 var _ADMIN_PW = "kit2025";
 var _EM = ["parksh", "kit.ac.kr"].join(String.fromCharCode(64));
+
+// ── EmailJS 설정 (본인 계정 값으로 교체 필요) ──
+var _EJS_PUBLIC  = "hRzF_ukCITnGsOCB5";     // EmailJS Public Key
+var _EJS_SERVICE = "service_ws2m9vo";     // EmailJS Service ID
+var _EJS_TMPL    = "template_e8la428";    // EmailJS Template ID
+var _EJS_READY   = false;
+
+// EmailJS 초기화
+try {
+  emailjs.init({ publicKey: _EJS_PUBLIC });
+  _EJS_READY = true;
+} catch(e) { console.log("EmailJS init error:", e); }
 
 function goPage(name) {
   try {
@@ -587,42 +589,114 @@ function analyze() {
 
 function submitApply() {
   try {
-    var name=document.getElementById("fName").value.trim();
-    var birth=document.getElementById("fBirth").value;
-    var phone=document.getElementById("fPhone").value.trim();
-    var email=document.getElementById("fEmail").value.trim();
-    var gender=document.getElementById("fGender").value;
-    var edu=document.getElementById("fEdu").value;
-    var job=document.getElementById("fJob").value.trim();
-    var motive=document.getElementById("fMotive").value.trim();
-    var agree=document.getElementById("fAgree").checked;
-    var ints=[];
-    var ii=document.querySelectorAll(".ii.on");
-    for(var i=0;i<ii.length;i++) ints.push(ii[i].textContent);
-    if(!name||!phone||!motive){alert("필수 항목(이름, 연락처, 지원동기)을 입력해 주세요.");return;}
-    if(!agree){alert("개인정보 수집·이용에 동의해 주세요.");return;}
-    var now=new Date();
-    var ds=now.toLocaleDateString("ko-KR");
-    var ts=now.toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"});
-    if(_db){
+    var name    = document.getElementById("fName").value.trim();
+    var birth   = document.getElementById("fBirth").value;
+    var phone   = document.getElementById("fPhone").value.trim();
+    var email   = document.getElementById("fEmail").value.trim();
+    var gender  = document.getElementById("fGender").value;
+    var edu     = document.getElementById("fEdu").value;
+    var job     = document.getElementById("fJob").value.trim();
+    var motive  = document.getElementById("fMotive").value.trim();
+    var agree   = document.getElementById("fAgree").checked;
+    var ints = [];
+    var ii = document.querySelectorAll(".ii.on");
+    for (var i = 0; i < ii.length; i++) ints.push(ii[i].textContent);
+
+    if (!name || !phone || !motive) {
+      alert("필수 항목(이름, 연락처, 지원동기)을 입력해 주세요.");
+      return;
+    }
+    if (!agree) {
+      alert("개인정보 수집·이용에 동의해 주세요.");
+      return;
+    }
+
+    var now = new Date();
+    var ds  = now.toLocaleDateString("ko-KR");
+    var ts  = now.toLocaleTimeString("ko-KR", {hour:"2-digit", minute:"2-digit"});
+
+    // 버튼 비활성화 (중복 제출 방지)
+    var btnApply = document.getElementById("btnApply");
+    btnApply.disabled = true;
+    btnApply.textContent = "전송 중...";
+
+    // ── Firebase 저장 ──
+    if (_db) {
       try {
         _db.collection("applications").add({
-          name:name,birth:birth,phone:phone,email:email,
-          gender:gender,edu:edu,job:job,motive:motive,
-          interests:ints.join(", "),status:"new",date:ds,time:ts,
-          timestamp:firebase.firestore.FieldValue.serverTimestamp()
+          name:name, birth:birth, phone:phone, email:email,
+          gender:gender, edu:edu, job:job, motive:motive,
+          interests:ints.join(", "), status:"new", date:ds, time:ts,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
       } catch(e) { console.log("FB save error:", e); }
     }
-    var subj=encodeURIComponent("[KIT 임상병리과] 성인별도반 입학상담 신청 - "+name);
-    var body=encodeURIComponent("이름: "+name+"\n생년월일: "+(birth||"미입력")+"\n연락처: "+phone+"\n이메일: "+(email||"미입력")+"\n성별: "+(gender||"미입력")+"\n학력: "+(edu||"미입력")+"\n직업: "+(job||"미입력")+"\n지원동기: "+motive+"\n관심분야: "+(ints.join(", ")||"미선택")+"\n신청일시: "+ds+" "+ts+"\n\n경남정보대학교 임상병리과");
-    window.location.href="mailto:"+_EM+"?subject="+subj+"&body="+body;
-    setTimeout(function(){
-      document.getElementById("applyWrap").style.display="none";
-      document.getElementById("succ").classList.add("on");
-      window.scrollTo(0,0);
-    },400);
-  } catch(e) { console.log("submitApply error:", e); }
+
+    // ── EmailJS 자동발송 ──
+    var templateParams = {
+      to_email  : _EM,
+      from_name : name,
+      reply_to  : email || _EM,
+      subject   : "[KIT 임상병리과] 성인별도반 입학상담 신청 - " + name,
+      name      : name,
+      birth     : birth   || "미입력",
+      phone     : phone,
+      email     : email   || "미입력",
+      gender    : gender  || "미입력",
+      edu       : edu     || "미입력",
+      job       : job     || "미입력",
+      motive    : motive,
+      interests : ints.join(", ") || "미선택",
+      datetime  : ds + " " + ts
+    };
+
+    if (_EJS_READY && _EJS_PUBLIC !== "YOUR_PUBLIC_KEY") {
+      // EmailJS 발송
+      emailjs.send(_EJS_SERVICE, _EJS_TMPL, templateParams)
+        .then(function() {
+          console.log("EmailJS 발송 성공");
+          showSuccess();
+        })
+        .catch(function(err) {
+          console.log("EmailJS 발송 실패:", err);
+          // 실패 시 mailto 폴백
+          sendMailto(name, birth, phone, email, gender, edu, job, motive, ints, ds, ts);
+        });
+    } else {
+      // EmailJS 미설정 시 mailto 폴백
+      sendMailto(name, birth, phone, email, gender, edu, job, motive, ints, ds, ts);
+    }
+
+  } catch(e) {
+    console.log("submitApply error:", e);
+    var btn = document.getElementById("btnApply");
+    if (btn) { btn.disabled = false; btn.textContent = "\uD83C\uDFEB 입학상담 신청하기"; }
+  }
+}
+
+function sendMailto(name, birth, phone, email, gender, edu, job, motive, ints, ds, ts) {
+  var subj = encodeURIComponent("[KIT 임상병리과] 성인별도반 입학상담 신청 - " + name);
+  var body = encodeURIComponent(
+    "이름: " + name +
+    "\n생년월일: " + (birth  || "미입력") +
+    "\n연락처: "  + phone +
+    "\n이메일: "  + (email  || "미입력") +
+    "\n성별: "   + (gender || "미입력") +
+    "\n학력: "   + (edu    || "미입력") +
+    "\n직업: "   + (job    || "미입력") +
+    "\n지원동기: " + motive +
+    "\n관심분야: " + (ints.join(", ") || "미선택") +
+    "\n신청일시: " + ds + " " + ts +
+    "\n\n경남정보대학교 임상병리과"
+  );
+  window.location.href = "mailto:" + _EM + "?subject=" + subj + "&body=" + body;
+  setTimeout(showSuccess, 400);
+}
+
+function showSuccess() {
+  document.getElementById("applyWrap").style.display = "none";
+  document.getElementById("succ").classList.add("on");
+  window.scrollTo(0, 0);
 }
 
 function renderDash() {

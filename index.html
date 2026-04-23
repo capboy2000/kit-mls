@@ -453,6 +453,18 @@ var _apps = [];
 var _flt = "all";
 var _loggedIn = false;
 var _unsub = null;
+// 앱 시작 시 자동 Firebase 연결
+window.addEventListener('load', function() {
+  var cfg = {
+  apiKey: "AIzaSyDniJbVNZ__qEmxUqElFnppWpfx8kX_E-E",
+  authDomain: "kit-mls.firebaseapp.com",
+  projectId: "kit-mls",
+  storageBucket: "kit-mls.firebasestorage.app",
+  messagingSenderId: "630878578210",
+  appId: "1:630878578210:web:7c2faa21bfabb327a88c7b"
+  };
+  loadFirebase(function() { initFb(cfg); });
+});  
 var _FBKEY = "kit_fb2025";
 var _ADMIN_PW = "kit2025";
 var _EM = ["parksh", "kit.ac.kr"].join(String.fromCharCode(64));

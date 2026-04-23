@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>경남정보대학교 임상병리과 성인학습자 모집</title>
+<style>
+:root{--red:#D91F2A;--navy:#0D1B3E;--yel:#FFD600;--bg:#F0F2F5;--bd:#E0E4EA;--mu:#7A8494;--tx:#111827;--gn:#16A34A;--or:#D97706;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{font-family:-apple-system,BlinkMacSystemFont,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;background:var(--bg);color:var(--tx);max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;}
+.topbar{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--bd);padding:9px 14px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 8px rgba(0,0,0,.06);}
+.tb-main{font-size:13px;font-weight:900;color:var(--navy);}
+.tb-sub{font-size:10px;font-weight:700;color:var(--red);}
+.tb-r{display:flex;align-items:center;gap:8px;}
+.pill{background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;}
+.adm-btn{background:var(--navy);color:#fff;border:none;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;}
+.hero{margin:10px 12px;border-radius:20px;background:linear-gradient(135deg,#0D1B3E 0%,#1e3a6e 100%);padding:20px 18px 18px;position:relative;overflow:hidden;}
+.h-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.h-main{font-size:14px;font-weight:900;color:#fff;}
+.h-sub{font-size:10px;font-weight:700;color:var(--yel);}
+.h-dept{color:rgba(255,255,255,.4);font-size:9px;text-align:right;line-height:1.7;}
+.h-tag{display:inline-block;background:rgba(217,31,42,.2);border:1px solid rgba(217,31,42,.35);color:#ffaaaa;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;}
+.hero h2{font-size:20px;font-weight:900;color:#fff;line-height:1.35;margin-bottom:6px;}
+.hero h2 em{color:var(--yel);font-style:normal;}
+.hero-desc{font-size:11px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:16px;}
+.h-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.hb{padding:11px;border-radius:12px;border:none;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;}
+.hb.r{background:var(--red);color:#fff;}
+.hb.g{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.15);}
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 12px 10px;}
+.qac{background:#fff;border-radius:16px;padding:14px;box-shadow:0 2px 12px rgba(0,0,0,.07);cursor:pointer;}
+.q-ico{font-size:24px;margin-bottom:7px;}
+.q-t{font-size:12px;font-weight:700;}
+.q-d{font-size:10px;color:var(--mu);margin-top:3px;line-height:1.5;}
+.q-a{font-size:10px;color:var(--red);font-weight:700;margin-top:6px;}
+.notice{background:var(--red);margin:0 12px 10px;border-radius:12px;padding:10px 14px;color:#fff;font-size:11px;font-weight:600;}
+.fbs{display:flex;align-items:center;gap:6px;font-size:10px;padding:7px 12px;margin:0 12px 10px;border-radius:10px;font-weight:600;}
+.fbs.ok{background:#DCFCE7;color:#15803D;}
+.fbs.err{background:#FEE2E2;color:#991B1B;}
+.fbs.ld{background:#F1F5F9;color:var(--mu);}
+.fb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.fbs.ok .fb-dot{background:#16A34A;}
+.fbs.err .fb-dot{background:var(--red);}
+.fbs.ld .fb-dot{background:var(--mu);}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 12px 14px;}
+.sc{background:#fff;border-radius:14px;padding:12px 8px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.sc-n{font-size:15px;font-weight:900;color:var(--navy);}
+.sc-l{font-size:10px;color:var(--mu);margin-top:3px;}
+.sh{padding:14px 14px 8px;font-size:13px;font-weight:800;}
+.steps{margin:0 12px 14px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);}
+.step-r{display:flex;align-items:center;gap:12px;padding:12px 14px;}
+.step-n{width:34px;height:34px;border-radius:10px;background:var(--red);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-t{font-size:12px;font-weight:700;}
+.step-d{font-size:10px;color:var(--mu);margin-top:2px;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:0 12px 14px;}
+.tag{background:var(--navy);color:var(--yel);padding:6px 13px;border-radius:20px;font-size:11px;font-weight:700;}
+.cbox{background:var(--navy);border-radius:16px;margin:0 12px 12px;padding:14px 16px;}
+.c-t{font-size:12px;font-weight:800;color:var(--yel);margin-bottom:9px;}
+.c-i{font-size:11px;color:rgba(255,255,255,.65);line-height:2.0;}
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid var(--bd);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 0 max(8px,env(safe-area-inset-bottom));z-index:99;box-shadow:0 -2px 12px rgba(0,0,0,.06);}
+.bni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;cursor:pointer;user-select:none;-webkit-user-select:none;}
+.bn-ico{font-size:22px;}
+.bn-lbl{font-size:10px;color:var(--mu);font-weight:500;}
+.bni.on .bn-lbl{color:var(--red);font-weight:700;}
+.page{display:none;padding-bottom:88px;}
+.page.on{display:block;}
+.ph{padding:14px 14px 6px;}
+.ph h2{font-size:17px;font-weight:900;}
+.ph p{font-size:11px;color:var(--mu);margin-top:3px;}
+.hcc{background:#fff;border-radius:16px;margin:0 12px 10px;padding:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.hch{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.hci{width:32px;height:32px;border-radius:9px;background:var(--red);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hct{font-size:13px;font-weight:700;}
+.hcs{font-size:10px;color:var(--mu);}
+.ir{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.il{font-size:11px;font-weight:600;min-width:80px;flex-shrink:0;}
+.iw{flex:1;position:relative;}
+.hin{width:100%;padding:9px 38px 9px 11px;border:1.5px solid var(--bd);border-radius:10px;font-size:15px;font-family:inherit;color:var(--tx);outline:none;background:#fff;}
+.hin:focus{border-color:var(--red);}
+.iu{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--mu);font-weight:600;}
+.anl-btn{width:calc(100% - 24px);margin:2px 12px 14px;padding:14px;background:var(--red);color:#fff;border:none;border-radius:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
+#res-sec{display:none;margin:0 12px;}
+.ob{border-radius:13px;padding:13px 15px;margin-bottom:10px;font-size:13px;font-weight:700;line-height:1.5;}
+.ob.g{background:#DCFCE7;color:#15803D;border:1.5px solid #86EFAC;}
+.ob.f{background:#FEF9C3;color:#854D0E;border:1.5px solid #FDE047;}
+.ob.b{background:#FEE2E2;color:#991B1B;border:1.5px solid #FCA5A5;}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;}
+.ri{border-radius:13px;padding:12px;position:relative;overflow:hidden;}
+.ri.normal{background:#DCFCE7;border:1.5px solid #86EFAC;}
+.ri.caution{background:#FEF9C3;border:1.5px solid #FDE047;}
+.ri.danger{background:#FEE2E2;border:1.5px solid #FCA5A5;}
+.ri-nm{font-size:10px;color:var(--mu);font-weight:600;margin-bottom:3px;}
+.ri-v{font-size:17px;font-weight:900;}
+.ri.normal .ri-v{color:#15803D;}.ri.caution .ri-v{color:#854D0E;}.ri.danger .ri-v{color:#991B1B;}
+.ri-lbl{font-size:10px;font-weight:700;margin-top:2px;}
+.ri.normal .ri-lbl{color:#15803D;}.ri.caution .ri-lbl{color:#854D0E;}.ri.danger .ri-lbl{color:#991B1B;}
+.ri-ic{position:absolute;right:8px;top:8px;font-size:20px;opacity:.18;}
+.disc{background:#F1F5F9;border-radius:12px;padding:11px 13px;font-size:10px;color:var(--mu);line-height:1.7;margin-bottom:14px;}
+.rtabs{display:flex;gap:6px;overflow-x:auto;padding:0 12px 10px;scrollbar-width:none;}
+.rtabs::-webkit-scrollbar{display:none;}
+.rtab{flex-shrink:0;padding:7px 13px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;background:#fff;color:var(--mu);border:1.5px solid var(--bd);font-family:inherit;}
+.rtab.on{background:var(--red);color:#fff;border-color:var(--red);}
+.rpnl{display:none;}.rpnl.on{display:block;}
+.rc{background:#fff;border-radius:16px;margin:0 12px 12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.rh{background:var(--navy);color:#fff;padding:11px 15px;font-size:12px;font-weight:700;}
+.rr{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 15px;border-bottom:1px solid var(--bg);}
+.rr:last-child{border-bottom:none;}
+.rn{font-size:11px;font-weight:700;}
+.rv{text-align:right;}
+.rok{font-size:11px;color:var(--gn);font-weight:600;}
+.rwa{font-size:10px;color:var(--red);margin-top:2px;}
+.fc{background:#fff;border-radius:16px;margin:0 12px 10px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.fst{font-size:12px;font-weight:800;padding-bottom:10px;border-bottom:2px solid var(--red);margin-bottom:13px;}
+.fg{margin-bottom:12px;}
+.fl{display:block;font-size:11px;font-weight:700;margin-bottom:5px;}
+.req{color:var(--red);}
+.fi,.fs,.ft{width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:11px;font-size:14px;font-family:inherit;color:var(--tx);background:#fff;outline:none;-webkit-appearance:none;}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--red);}
+.ft{resize:vertical;min-height:80px;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.ig{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+.ii{padding:9px 4px;border-radius:11px;text-align:center;border:1.5px solid var(--bd);cursor:pointer;font-size:11px;font-weight:600;color:var(--mu);background:#fff;font-family:inherit;}
+.ii.on{background:var(--navy);color:var(--yel);border-color:var(--navy);}
+.agb{background:var(--bg);border-radius:12px;padding:12px;margin-bottom:12px;}
+.agt{font-size:10px;color:var(--mu);line-height:1.8;margin-bottom:9px;}
+.agc{display:flex;align-items:center;gap:7px;cursor:pointer;}
+.agc input{accent-color:var(--red);width:16px;height:16px;}
+.agc span{font-size:11px;font-weight:700;}
+.sub-btn{width:100%;padding:14px;background:var(--red);color:#fff;border:none;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.succ{background:#fff;border-radius:18px;margin:0 12px;padding:50px 24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07);display:none;}
+.succ.on{display:block;}
+.succ-ico{font-size:56px;margin-bottom:14px;}
+.succ-t{font-size:21px;font-weight:900;color:var(--red);margin-bottom:9px;}
+.succ-m{font-size:12px;color:var(--mu);line-height:1.9;}
+#adm-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);display:none;align-items:flex-end;}
+#adm-ov.on{display:flex;}
+.adm-sh{background:#fff;border-radius:22px 22px 0 0;width:100%;max-width:430px;margin:0 auto;max-height:90vh;overflow-y:auto;padding:18px;}
+.adm-hd{width:38px;height:4px;background:var(--bd);border-radius:2px;margin:0 auto 16px;}
+.adm-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;}
+.adm-t{font-size:16px;font-weight:900;}
+.adm-s{font-size:11px;color:var(--mu);margin-bottom:14px;}
+.adm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.ast{background:var(--bg);border-radius:12px;padding:12px;text-align:center;}
+.ast-n{font-size:21px;font-weight:900;color:var(--red);}
+.ast-n.nv{color:var(--navy);}
+.ast-l{font-size:10px;color:var(--mu);margin-top:2px;}
+.adm-sec{font-size:12px;font-weight:800;margin:12px 0 9px;padding-bottom:6px;border-bottom:2px solid var(--red);}
+.fr-row{display:flex;gap:7px;margin-bottom:9px;}
+.fb{padding:6px 14px;border-radius:20px;font-size:10px;font-weight:600;cursor:pointer;border:1.5px solid var(--bd);background:#fff;color:var(--mu);font-family:inherit;}
+.fb.on{background:var(--red);color:#fff;border-color:var(--red);}
+.acc{background:var(--bg);border-radius:13px;padding:12px 14px;margin-bottom:9px;border-left:3px solid var(--red);}
+.ac-nm{font-size:13px;font-weight:700;}
+.ac-bg{display:inline-block;padding:2px 7px;border-radius:6px;font-size:9px;font-weight:700;margin-left:6px;}
+.bg-new{background:var(--red);color:#fff;}
+.bg-rd{background:#E0E4EA;color:var(--mu);}
+.ac-if{font-size:10px;color:var(--mu);margin-top:5px;line-height:1.8;}
+.ac-bt{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.ab{padding:6px 12px;border-radius:9px;font-size:11px;font-weight:700;cursor:pointer;border:none;font-family:inherit;}
+.ab.nv{background:var(--navy);color:#fff;}
+.ab.gn{background:#DCFCE7;color:#15803D;}
+.ab.dl{background:#FEE2E2;color:var(--red);}
+.emp{text-align:center;padding:28px;color:var(--mu);font-size:12px;}
+.al-in{width:100%;padding:11px 13px;border:1.5px solid var(--bd);border-radius:11px;font-size:15px;font-family:inherit;outline:none;margin-bottom:10px;}
+.al-in:focus{border-color:var(--red);}
+.al-btn{width:100%;padding:13px;background:var(--navy);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.ex-btn{width:100%;padding:11px;background:var(--navy);color:#fff;border:none;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:9px;}
+.adm-cl{background:var(--bg);border:none;padding:6px 13px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;}
+
+
+
+
+
+.fbg-steps a{color:var(--red);font-weight:700;}
+
+
+.fbg-btn.r{background:var(--red);color:#fff;}
+.fbg-btn.g{background:var(--bg);color:var(--mu);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="tb-main">경남정보대학교 임상병리과</div>
+    <div class="tb-sub">성인학습자 모집</div>
+  </div>
+  <div class="tb-r">
+    <span class="pill">2027 모집중</span>
+    <button class="adm-btn" id="btnAdm">&#128274; 관리자</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="page on" id="pg-home">
+  <div class="hero">
+    <div class="h-bar">
+      <div><div class="h-main">경남정보대학교 임상병리과</div><div class="h-sub">성인학습자 모집</div></div>
+      <div class="h-dept">성인별도반<br>2027학년도</div>
+    </div>
+    <div class="h-tag">2027학년도 모집 진행 중</div>
+    <h2>임상병리사의 꿈,<br><em>지금 시작하세요</em></h2>
+    <p class="hero-desc">건강검진 수치를 해석하고 생명을 지키는<br>전문 임상병리사 양성 특별 과정</p>
+    <div class="h-btns">
+      <button class="hb r" id="btnHeroApply">&#128203; 입학상담 신청</button>
+      <button class="hb g" id="btnHeroChecker">&#129514; 수치 분석</button>
+    </div>
+  </div>
+  <div class="qa">
+    <div class="qac" id="qaChecker">
+      <div class="q-ico">&#129514;</div>
+      <div class="q-t">건강수치 분석</div>
+      <div class="q-d">혈압·혈당·콜레스테롤<br>즉시 정상 판정</div>
+      <div class="q-a">분석하기 →</div>
+    </div>
+    <div class="qac" id="qaApply">
+      <div class="q-ico">&#128203;</div>
+      <div class="q-t">입학상담 신청</div>
+      <div class="q-d">성인별도반 모집<br>신청서 작성</div>
+      <div class="q-a">신청하기 →</div>
+    </div>
+  </div>
+  <div class="notice">&#128226; 2027학년도 성인별도반 원서접수 진행 중!</div>
+  <div class="fbs ld" id="fbs"><div class="fb-dot"></div><span id="fbsTxt">데이터베이스 연결 확인 중...</span></div>
+  <div class="stats">
+    <div class="sc"><div class="sc-n">3년</div><div class="sc-l">수업 연한</div></div>
+    <div class="sc"><div class="sc-n" style="font-size:13px;">주말</div><div class="sc-l">직장인 병행가능</div></div>
+    <div class="sc"><div class="sc-n" style="font-size:11px;line-height:1.3;">선행학습<br>학점인증</div><div class="sc-l">타 대학 이수 등</div></div>
+  </div>
+  <div class="sh">&#128197; 전형 일정</div>
+  <div class="steps">
+    <div class="step-r">
+      <div class="step-n">&#128522;</div>
+      <div><div class="step-t">입학상담 환영</div><div class="step-d">언제든지 편하게 연락 주세요</div></div>
+    </div>
+  </div>
+  <div class="sh">&#127973; 졸업 후 진로</div>
+  <div class="tags">
+    <span class="tag">종합병원 검사실</span>
+    <span class="tag">건강검진센터</span>
+    <span class="tag">보건소</span>
+    <span class="tag">혈액원</span>
+    <span class="tag">연구기관</span>
+    <span class="tag">체외진단업체</span>
+  </div>
+  <div class="cbox">
+    <div class="c-t">&#128222; 문의 / 상담</div>
+    <div class="c-i">경남정보대학교 임상병리과<br>&#128241; 010-8475-0423<br>&#128241; 010-9262-2432<br>&#9993; parksh [at] kit.ac.kr</div>
+  </div>
+</div>
+
+<!-- CHECKER -->
+<div class="page" id="pg-checker">
+  <div class="ph"><h2>&#129514; 건강수치 분석기</h2><p>수치를 입력하면 즉시 정상/주의/위험 판정</p></div>
+  <div class="hcc">
+    <div class="hch"><div class="hci">&#129656;</div><div><div class="hct">혈압</div><div class="hcs">Blood Pressure</div></div></div>
+    <div class="ir"><span class="il">수축기(SBP)</span><div class="iw"><input class="hin" type="number" id="bpS" placeholder="120"><span class="iu">mmHg</span></div></div>
+    <div class="ir"><span class="il">이완기(DBP)</span><div class="iw"><input class="hin" type="number" id="bpD" placeholder="80"><span class="iu">mmHg</span></div></div>
+  </div>
+  <div class="hcc">
+    <div class="hch"><div class="hci">&#127852;</div><div><div class="hct">혈당 / 당화혈색소</div><div class="hcs">Glucose / HbA1c</div></div></div>
+    <div class="ir"><span class="il">공복혈당</span><div class="iw"><input class="hin" type="number" id="glu" placeholder="95"><span class="iu">mg/dL</span></div></div>
+    <div class="ir"><span class="il">HbA1c</span><div class="iw"><input class="hin" type="number" id="hba" placeholder="5.5" step="0.1"><span class="iu">%</span></div></div>
+  </div>
+  <div class="hcc">
+    <div class="hch"><div class="hci">&#128155;</div><div><div class="hct">콜레스테롤</div><div class="hcs">Cholesterol</div></div></div>
+    <div class="ir"><span class="il">총 콜레스테롤</span><div class="iw"><input class="hin" type="number" id="tc" placeholder="180"><span class="iu">mg/dL</span></div></div>
+    <div class="ir"><span class="il">중성지방(TG)</span><div class="iw"><input class="hin" type="number" id="tg" placeholder="120"><span class="iu">mg/dL</span></div></div>
+    <div class="ir"><span class="il">LDL-C</span><div class="iw"><input class="hin" type="number" id="ldl" placeholder="90"><span class="iu">mg/dL</span></div></div>
+    <div class="ir"><span class="il">HDL-C</span><div class="iw"><input class="hin" type="number" id="hdl" placeholder="65"><span class="iu">mg/dL</span></div></div>
+  </div>
+  <div class="hcc">
+    <div class="hch"><div class="hci">&#129505;</div><div><div class="hct">간 기능</div><div class="hcs">Liver Function</div></div></div>
+    <div class="ir"><span class="il">AST(sGOT)</span><div class="iw"><input class="hin" type="number" id="ast" placeholder="25"><span class="iu">IU/L</span></div></div>
+    <div class="ir"><span class="il">ALT(sGPT)</span><div class="iw"><input class="hin" type="number" id="alt" placeholder="20"><span class="iu">IU/L</span></div></div>
+    <div class="ir"><span class="il">γ-GTP(남기준)</span><div class="iw"><input class="hin" type="number" id="ggt" placeholder="30"><span class="iu">IU/L</span></div></div>
+  </div>
+  <button class="anl-btn" id="btnAnalyze">&#128269; 지금 분석하기</button>
+  <div id="res-sec">
+    <div id="ob"></div>
+    <div class="rg" id="rg"></div>
+    <div class="disc">&#9888;&#65039; 본 결과는 참고용이며 의학적 진단을 대체하지 않습니다.</div>
+  </div>
+</div>
+
+<!-- REF -->
+<div class="page" id="pg-ref">
+  <div class="ph"><h2>&#128203; 정상참고수치표</h2><p>경남정보대학교 임상병리과 기준</p></div>
+  <div class="rtabs" id="refTabs">
+    <button class="rtab on" data-ref="bp">혈압</button>
+    <button class="rtab" data-ref="dm">당뇨</button>
+    <button class="rtab" data-ref="ch">콜레스테롤</button>
+    <button class="rtab" data-ref="lv">간기능</button>
+    <button class="rtab" data-ref="kd">신장</button>
+    <button class="rtab" data-ref="cb">CBC</button>
+    <button class="rtab" data-ref="th">갑상샘</button>
+    <button class="rtab" data-ref="tm">종양표지자</button>
+    <button class="rtab" data-ref="bn">골밀도</button>
+  </div>
+  <div class="rpnl on" data-p="bp"><div class="rc"><div class="rh">혈압 (Blood Pressure)</div>
+    <div class="rr"><span class="rn">정상혈압</span><div class="rv"><span class="rok">수축기&lt;120 AND 이완기&lt;80</span></div></div>
+    <div class="rr"><span class="rn">주의혈압</span><div class="rv"><span class="rok" style="color:var(--or)">120~129 AND &lt;80</span></div></div>
+    <div class="rr"><span class="rn">고혈압 전단계</span><div class="rv"><span class="rwa">130~139 OR 80~89</span></div></div>
+    <div class="rr"><span class="rn">고혈압 1기</span><div class="rv"><span class="rwa">140~159 OR 90~99</span></div></div>
+    <div class="rr"><span class="rn">고혈압 2기</span><div class="rv"><span class="rwa">160↑ OR 100↑</span></div></div>
+  </div></div>
+  <div class="rpnl" data-p="dm"><div class="rc"><div class="rh">당뇨 (Diabetes)</div>
+    <div class="rr"><span class="rn">공복혈당 정상</span><div class="rv"><span class="rok">70~100 mg/dL</span></div></div>
+    <div class="rr"><span class="rn">당뇨 전단계</span><div class="rv"><span class="rok" style="color:var(--or)">100~125 mg/dL</span></div></div>
+    <div class="rr"><span class="rn">당뇨병</span><div class="rv"><span class="rwa">126 mg/dL 이상</span></div></div>
+    <div class="rr"><span class="rn">HbA1c 정상</span><div class="rv"><span class="rok">5.7% 미만</span></div></div>
+    <div class="rr"><span class="rn">HbA1c 당뇨의심</span><div class="rv"><span class="rwa">6.4% 이상</span></div></div>
+  </div></div>
+  <div class="rpnl" data-p="ch"><div class="rc"><div class="rh">콜레스테롤</div>
+    <div class="rr"><span class="rn">총 콜레스테롤</span><div class="rv"><span class="rok">200 미만 적절</span><div class="rwa">240↑ 위험</div></div></div>
+    <div class="rr"><span class="rn">중성지방(TG)</span><div class="rv"><span class="rok">150 미만 적절</span><div class="rwa">200↑ 위험</div></div></div>
+    <div class="rr"><span class="rn">LDL-C</span><div class="rv"><span class="rok">100 미만 적절</span><div class="rwa">160↑ 위험</div></div></div>
+    <div class="rr"><span class="rn">HDL-C</span><div class="rv"><span class="rok">60↑ 적절</span><div class="rwa">40↓ 위험</div></div></div>
+  </div></div>
+  <div class="rpnl" data-p="lv"><div class="rc"><div class="rh">간 기능 (Liver)</div>
+    <div class="rr"><span class="rn">AST(sGOT)</span><div class="rv"><span class="rok">40 IU/L 이하</span></div></div>
+    <div class="rr"><span class="rn">ALT(sGPT)</span><div class="rv"><span class="rok">40 IU/L 이하</span></div></div>
+    <div class="rr"><span class="rn">γ-GTP 남</span><div class="rv"><span class="rok">64 IU/L 이하</span></div></div>
+    <div class="rr"><span class="rn">γ-GTP 여</span><div class="rv"><span class="rok">35 IU/L 이하</span></div></div>
+    <div class="rr"><span class="rn">빌리루빈</span><div class="rv"><span class="rok">0.2~1.0 mg/dL</span></div></div>
+  </div></div>
+  <div class="rpnl" data-p="kd"><div class="rc"><div class="rh">신장 기능 (Kidney)</div>
+    <div class="rr"><span class="rn">BUN</span><div class="rv"><span class="rok">7~18 mg/dL</span></div></div>
+    <div class="rr"><span class="rn">크레아티닌(Cr)</span><div class="rv"><span class="rok">1.5 mg/dL 이하</span><div class="rwa">증가시 신기능저하</div></div></div>
+    <div class="rr"><span class="rn">e-GFR</span><div class="rv"><span class="rok">60 mL/min/1.73m2 이상</span></div></div>
+  </div></div>
+  <div class="rpnl" data-p="cb"><div class="rc"><div class="rh">CBC 혈구검사</div>
+    <div class="rr"><span class="rn">적혈구 남/여</span><div class="rv"><span class="rok">420~630 / 400~540 만/mm3</span></div></div>
+    <div class="rr"><span class="rn">헤모글로빈 남/여</span><div class="rv"><span class="rok">13~17 / 12~16 g/dL</span></div></div>
+    <div class="rr"><span class="rn">백혈구(WBC)</span><div class="rv"><span class="rok">4,000~6,000 /uL</span><div class="rwa">6,000↑ 염증확인</div></div></div>
+    <div class="rr"><span class="rn">혈소판(PLT)</span><div class="rv"><span class="rok">13~40만 /uL</span><div class="rwa">13만↓ 자가면역의심</div></div></div>
+  </div></div>
+  <div class="rpnl" data-p="th"><div class="rc"><div class="rh">갑상샘 검사</div>
+    <div class="rr"><span class="rn">TSH</span><div class="rv"><span class="rok">0.27~4.2 uIU/mL</span></div></div>
+    <div class="rr"><span class="rn">Free T4</span><div class="rv"><span class="rok">0.93~1.70 ng/dL</span></div></div>
+    <div class="rr"><span class="rn">기능저하</span><div class="rv"><span class="rwa">Free T4 감소 + TSH 증가</span></div></div>
+    <div class="rr"><span class="rn">기능항진</span><div class="rv"><span class="rwa">Free T4 증가 + TSH 감소</span></div></div>
+  </div></div>
+  <div class="rpnl" data-p="tm"><div class="rc"><div class="rh">종양 표지자</div>
+    <div class="rr"><span class="rn">PSA (전립선)</span><div class="rv"><span class="rok">0~3 ng/mL</span></div></div>
+    <div class="rr"><span class="rn">AFP (간암)</span><div class="rv"><span class="rok">0.89~8.878 ng/mL</span></div></div>
+    <div class="rr"><span class="rn">CEA (위·폐·유방)</span><div class="rv"><span class="rok">0~3 ng/mL</span></div></div>
+    <div class="rr"><span class="rn">CA 125 (난소암)</span><div class="rv"><span class="rok">0~35 U/mL</span></div></div>
+    <div class="rr"><span class="rn">CA 19-9 (췌장암)</span><div class="rv"><span class="rok">0~37 U/mL</span></div></div>
+  </div></div>
+  <div class="rpnl" data-p="bn"><div class="rc"><div class="rh">골밀도 T-score</div>
+    <div class="rr"><span class="rn">정상</span><div class="rv"><span class="rok">T-score 이상 -1.0</span></div></div>
+    <div class="rr"><span class="rn">골감소증</span><div class="rv"><span class="rok" style="color:var(--or)">-2.5 미만 -1.0 이상</span></div></div>
+    <div class="rr"><span class="rn">골다공증</span><div class="rv"><span class="rwa">T-score -2.5 이하</span></div></div>
+  </div></div>
+</div>
+
+<!-- APPLY -->
+<div class="page" id="pg-apply">
+  <div class="ph"><h2>&#128203; 입학상담 신청</h2><p>성인별도반 입학 상담 신청서를 작성해 주세요</p></div>
+  <div class="succ" id="succ">
+    <div class="succ-ico">&#127881;</div>
+    <div class="succ-t">신청 완료!</div>
+    <div class="succ-m">입학상담 신청이 완료되었습니다.<br>담당자가 빠른 시일 내 연락드립니다.<br><br>&#128241; 010-8475-0423<br>&#128241; 010-9262-2432<br>경남정보대학교 임상병리과</div>
+  </div>
+  <div id="applyWrap">
+    <div class="fc">
+      <div class="fst">&#128100; 기본 정보</div>
+      <div class="fr2">
+        <div class="fg"><label class="fl">이름 <span class="req">*</span></label><input class="fi" id="fName" type="text" placeholder="홍길동"></div>
+        <div class="fg"><label class="fl">생년월일</label><input class="fi" id="fBirth" type="date"></div>
+      </div>
+      <div class="fg"><label class="fl">연락처 <span class="req">*</span></label><input class="fi" id="fPhone" type="tel" placeholder="010-0000-0000"></div>
+      <div class="fg"><label class="fl">이메일</label><input class="fi" id="fEmail" type="email" placeholder="example@email.com"></div>
+      <div class="fr2">
+        <div class="fg"><label class="fl">성별</label><select class="fs" id="fGender"><option value="">선택</option><option>남성</option><option>여성</option></select></div>
+        <div class="fg"><label class="fl">최종학력</label><select class="fs" id="fEdu"><option value="">선택</option><option>고등학교졸업</option><option>전문대졸업</option><option>4년제졸업</option><option>대학원이상</option></select></div>
+      </div>
+    </div>
+    <div class="fc">
+      <div class="fst">&#128188; 경력 및 지원 동기</div>
+      <div class="fg"><label class="fl">현재 직업 / 경력</label><input class="fi" id="fJob" type="text" placeholder="예) 병원 원무과 3년 근무"></div>
+      <div class="fg"><label class="fl">지원 동기 <span class="req">*</span></label><textarea class="ft" id="fMotive" placeholder="임상병리과 성인별도반에 지원하게 된 동기를 적어 주세요."></textarea></div>
+      <div class="fg">
+        <label class="fl">관심 분야 (복수 선택)</label>
+        <div class="ig">
+          <div class="ii">임상화학</div><div class="ii">혈액학</div>
+          <div class="ii">미생물학</div><div class="ii">면역혈청</div>
+          <div class="ii">조직병리</div><div class="ii">임상생리</div>
+        </div>
+      </div>
+    </div>
+    <div class="fc">
+      <div class="fst">&#128196; 개인정보 동의</div>
+      <div class="agb">
+        <div class="agt">수집: 이름·연락처·이메일 | 목적: 입학전형 및 상담 | 보유: 1년</div>
+        <label class="agc"><input type="checkbox" id="fAgree"><span>개인정보 수집·이용에 동의합니다 (필수)</span></label>
+      </div>
+      <button class="sub-btn" id="btnApply">&#127979; 입학상담 신청하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bnav">
+  <div class="bni on" id="bniHome"><div class="bn-ico">&#127968;</div><div class="bn-lbl">홈</div></div>
+  <div class="bni" id="bniChecker"><div class="bn-ico">&#129514;</div><div class="bn-lbl">수치분석</div></div>
+  <div class="bni" id="bniRef"><div class="bn-ico">&#128203;</div><div class="bn-lbl">참고수치</div></div>
+  <div class="bni" id="bniApply"><div class="bn-ico">&#128221;</div><div class="bn-lbl">입학상담</div></div>
+</div>
+
+<!-- ADMIN -->
+<div id="adm-ov">
+  <div class="adm-sh">
+    <div class="adm-hd"></div>
+    <div class="adm-top">
+      <div>
+        <div class="adm-t">&#128274; 관리자 패널</div>
+        <div class="adm-s">경남정보대학교 임상병리과</div>
+      </div>
+      <button class="adm-cl" id="btnCloseAdm">&#10005; 닫기</button>
+    </div>
+    <div id="admLogin" style="padding:12px 0;">
+      <div style="font-size:11px;font-weight:700;margin-bottom:6px;">관리자 비밀번호</div>
+      <input class="al-in" type="password" id="admPw" placeholder="비밀번호 입력">
+      <button class="al-btn" id="btnLogin">로그인</button>
+      <div style="font-size:10px;color:var(--mu);text-align:center;margin-top:8px;">기본 비밀번호: kit2025</div>
+    </div>
+    <div id="admDash" style="display:none;">
+      <div class="adm-stats">
+        <div class="ast"><div class="ast-n" id="aTot">0</div><div class="ast-l">총 신청</div></div>
+        <div class="ast"><div class="ast-n" id="aNew">0</div><div class="ast-l">신규</div></div>
+        <div class="ast"><div class="ast-n nv" id="aTod">0</div><div class="ast-l">오늘</div></div>
+      </div>
+      <div class="adm-sec">신청자 목록</div>
+      <div class="fr-row">
+        <button class="fb on" id="fltAll">전체</button>
+        <button class="fb" id="fltNew">신규</button>
+        <button class="fb" id="fltRead">확인완료</button>
+      </div>
+      <div id="appList"></div>
+      <button class="ex-btn" id="btnCsv">&#128202; CSV 내보내기</button>
+      <button style="width:100%;padding:10px;background:#FEE2E2;color:var(--red);border:none;border-radius:12px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:8px;" id="btnLogout">로그아웃</button>
+    </div>
+  </div>
+</div>
+
+<!-- FIREBASE GUIDE -->
+
+
+<script>
+var _db = null;
+var _apps = [];
+var _flt = "all";
+var _loggedIn = false;
+var _unsub = null;
+var _FBKEY = "kit_fb2025";
+var _ADMIN_PW = "kit2025";
+var _EM = ["parksh", "kit.ac.kr"].join(String.fromCharCode(64));
+
+function goPage(name) {
+  try {
+    var pages = document.querySelectorAll(".page");
+    for (var i = 0; i < pages.length; i++) pages[i].classList.remove("on");
+    var bnis = document.querySelectorAll(".bni");
+    for (var i = 0; i < bnis.length; i++) bnis[i].classList.remove("on");
+    var pg = document.getElementById("pg-" + name);
+    var bn = document.getElementById("bni" + name.charAt(0).toUpperCase() + name.slice(1));
+    if (pg) pg.classList.add("on");
+    if (bn) bn.classList.add("on");
+    window.scrollTo(0, 0);
+  } catch(e) { console.log("goPage error:", e); }
+}
+
+function setFbs(type, msg) {
+  try {
+    var el = document.getElementById("fbs");
+    var tx = document.getElementById("fbsTxt");
+    if (el) el.className = "fbs " + type;
+    if (tx) tx.textContent = msg;
+  } catch(e) {}
+}
+
+function initFb(cfg) {
+  try {
+    if (window.firebase && firebase.apps && firebase.apps.length) {
+      for (var i = 0; i < firebase.apps.length; i++) {
+        try { firebase.apps[i].delete(); } catch(ex) {}
+      }
+    }
+    firebase.initializeApp(cfg);
+    _db = firebase.firestore();
+    try { localStorage.setItem(_FBKEY, JSON.stringify(cfg)); } catch(ex) {}
+    setFbs("ok", "Firebase 실시간 연결됨");
+    startListen();
+    return true;
+  } catch(e) {
+    setFbs("err", "연결 실패");
+    return false;
+  }
+}
+
+function startListen() {
+  if (!_db) return;
+  if (_unsub) { try { _unsub(); } catch(e) {} }
+  _unsub = _db.collection("applications").orderBy("timestamp", "desc")
+    .onSnapshot(function(snap) {
+      _apps = [];
+      snap.forEach(function(d) {
+        var data = d.data();
+        data.id = d.id;
+        _apps.push(data);
+      });
+      if (_loggedIn) renderDash();
+    }, function() {
+      setFbs("err", "실시간 동기화 오류");
+    });
+}
+
+function loadFirebase(cb) {
+  if (window.firebase) { try { cb(); } catch(e) {} return; }
+  var s1 = document.createElement("script");
+  s1.src = "https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js";
+  s1.onload = function() {
+    var s2 = document.createElement("script");
+    s2.src = "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js";
+    s2.onload = function() { try { cb(); } catch(e) {} };
+    s2.onerror = function() { setFbs("err", "Firebase 로드 실패"); };
+    document.head.appendChild(s2);
+  };
+  s1.onerror = function() { setFbs("err", "Firebase 로드 실패"); };
+  document.head.appendChild(s1);
+}
+
+function analyze() {
+  try {
+    function gv(id) { var v = parseFloat(document.getElementById(id).value); return isNaN(v) ? null : v; }
+    var bps=gv("bpS"), bpd=gv("bpD"), glu=gv("glu"), hba=gv("hba");
+    var tc=gv("tc"), tg=gv("tg"), ldl=gv("ldl"), hdl=gv("hdl");
+    var ast=gv("ast"), alt=gv("alt"), ggt=gv("ggt");
+    var res=[], dc=0, cc=0;
+    function push(n,v,u,s,l,ic) { res.push({n:n,v:v,u:u,s:s,l:l,ic:ic}); if(s==="danger")dc++; else if(s==="caution")cc++; }
+    if (bps!==null&&bpd!==null) {
+      var s,l;
+      if(bps<120&&bpd<80){s="normal";l="정상";}
+      else if(bps<=129&&bpd<80){s="caution";l="주의";}
+      else if(bps<=139||bpd<=89){s="caution";l="고혈압전단계";}
+      else if(bps<=159||bpd<=99){s="danger";l="고혈압1기";}
+      else{s="danger";l="고혈압2기";}
+      push("혈압",bps+"/"+bpd,"mmHg",s,l,"🩸");
+    }
+    if(glu!==null){var s=glu<100?"normal":glu<126?"caution":"danger";push("공복혈당",glu,"mg/dL",s,glu<100?"정상":glu<126?"전단계":"당뇨의심","🍬");}
+    if(hba!==null){var s=hba<5.7?"normal":hba<6.4?"caution":"danger";push("HbA1c",hba,"%",s,hba<5.7?"정상":hba<6.4?"전단계":"당뇨의심","💉");}
+    if(tc!==null){var s=tc<200?"normal":tc<240?"caution":"danger";push("총콜레스테롤",tc,"mg/dL",s,tc<200?"적절":tc<240?"경계":"위험","💛");}
+    if(tg!==null){var s=tg<150?"normal":tg<200?"caution":"danger";push("중성지방",tg,"mg/dL",s,tg<150?"적절":tg<200?"경계":"위험","🫧");}
+    if(ldl!==null){var s=ldl<100?"normal":ldl<160?"caution":"danger";push("LDL-C",ldl,"mg/dL",s,ldl<100?"적절":ldl<160?"경계":"위험","🔴");}
+    if(hdl!==null){var s=hdl>=60?"normal":hdl>=40?"caution":"danger";push("HDL-C",hdl,"mg/dL",s,hdl>=60?"적절":hdl>=40?"주의":"위험","🟢");}
+    if(ast!==null){push("AST",ast,"IU/L",ast<=40?"normal":"danger",ast<=40?"정상":"이상","🫀");}
+    if(alt!==null){push("ALT",alt,"IU/L",alt<=40?"normal":"danger",alt<=40?"정상":"이상","🫁");}
+    if(ggt!==null){push("γ-GTP",ggt,"IU/L",ggt<=64?"normal":"danger",ggt<=64?"정상":"이상","🫗");}
+    if(!res.length){alert("수치를 하나 이상 입력해 주세요.");return;}
+    var oc=dc>0?"b":cc>0?"f":"g";
+    var om=dc>0?"위험 항목 "+dc+"개 — 전문의 상담을 권장합니다.":cc>0?"주의 항목 "+cc+"개 — 생활습관 개선을 권장합니다.":"모든 항목이 정상 범위입니다!";
+    document.getElementById("ob").innerHTML="<div class=\"ob "+oc+"\">"+om+"</div>";
+    var html="";
+    for(var i=0;i<res.length;i++){
+      var r=res[i];
+      html+="<div class=\"ri "+r.s+"\"><div class=\"ri-nm\">"+r.n+"</div><div class=\"ri-v\">"+r.v+"<span style=\"font-size:10px;font-weight:400\"> "+r.u+"</span></div><div class=\"ri-lbl\">"+r.l+"</div><div class=\"ri-ic\">"+r.ic+"</div></div>";
+    }
+    document.getElementById("rg").innerHTML=html;
+    var rs=document.getElementById("res-sec");
+    rs.style.display="block";
+    setTimeout(function(){rs.scrollIntoView({behavior:"smooth",block:"start"});},100);
+  } catch(e) { console.log("analyze error:", e); alert("분석 중 오류가 발생했습니다."); }
+}
+
+function submitApply() {
+  try {
+    var name=document.getElementById("fName").value.trim();
+    var birth=document.getElementById("fBirth").value;
+    var phone=document.getElementById("fPhone").value.trim();
+    var email=document.getElementById("fEmail").value.trim();
+    var gender=document.getElementById("fGender").value;
+    var edu=document.getElementById("fEdu").value;
+    var job=document.getElementById("fJob").value.trim();
+    var motive=document.getElementById("fMotive").value.trim();
+    var agree=document.getElementById("fAgree").checked;
+    var ints=[];
+    var ii=document.querySelectorAll(".ii.on");
+    for(var i=0;i<ii.length;i++) ints.push(ii[i].textContent);
+    if(!name||!phone||!motive){alert("필수 항목(이름, 연락처, 지원동기)을 입력해 주세요.");return;}
+    if(!agree){alert("개인정보 수집·이용에 동의해 주세요.");return;}
+    var now=new Date();
+    var ds=now.toLocaleDateString("ko-KR");
+    var ts=now.toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"});
+    if(_db){
+      try {
+        _db.collection("applications").add({
+          name:name,birth:birth,phone:phone,email:email,
+          gender:gender,edu:edu,job:job,motive:motive,
+          interests:ints.join(", "),status:"new",date:ds,time:ts,
+          timestamp:firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch(e) { console.log("FB save error:", e); }
+    }
+    var subj=encodeURIComponent("[KIT 임상병리과] 성인별도반 입학상담 신청 - "+name);
+    var body=encodeURIComponent("이름: "+name+"\n생년월일: "+(birth||"미입력")+"\n연락처: "+phone+"\n이메일: "+(email||"미입력")+"\n성별: "+(gender||"미입력")+"\n학력: "+(edu||"미입력")+"\n직업: "+(job||"미입력")+"\n지원동기: "+motive+"\n관심분야: "+(ints.join(", ")||"미선택")+"\n신청일시: "+ds+" "+ts+"\n\n경남정보대학교 임상병리과");
+    window.location.href="mailto:"+_EM+"?subject="+subj+"&body="+body;
+    setTimeout(function(){
+      document.getElementById("applyWrap").style.display="none";
+      document.getElementById("succ").classList.add("on");
+      window.scrollTo(0,0);
+    },400);
+  } catch(e) { console.log("submitApply error:", e); }
+}
+
+function renderDash() {
+  try {
+    var today=new Date().toLocaleDateString("ko-KR");
+    document.getElementById("aTot").textContent=_apps.length;
+    document.getElementById("aNew").textContent=_apps.filter(function(a){return a.status==="new";}).length;
+    document.getElementById("aTod").textContent=_apps.filter(function(a){return a.date===today;}).length;
+    renderList(_flt);
+  } catch(e) { console.log("renderDash error:", e); }
+}
+
+function renderList(f) {
+  try {
+    var list=f==="new"?_apps.filter(function(a){return a.status==="new";}):f==="read"?_apps.filter(function(a){return a.status==="read";}):_apps;
+    var el=document.getElementById("appList");
+    if(!list.length){el.innerHTML="<div class=\"emp\">신청자가 없습니다</div>";return;}
+    var html="";
+    for(var i=0;i<list.length;i++){
+      var a=list[i];
+      html+="<div class=\"acc\"><div class=\"ac-nm\">"+a.name+"<span class=\"ac-bg "+(a.status==="new"?"bg-new":"bg-rd")+"\">"+(a.status==="new"?"신규":"확인")+"</span></div><div class=\"ac-if\">"+a.phone+" / "+a.date+" "+a.time+"</div><div class=\"ac-bt\"><button class=\"ab nv\" onclick=\"replyApp('"+a.email+"','"+a.name+"')\">답장</button><button class=\"ab gn\" onclick=\"markRead('"+a.id+"')\">확인</button><button class=\"ab dl\" onclick=\"delApp('"+a.id+"')\">삭제</button></div></div>";
+    }
+    el.innerHTML=html;
+  } catch(e) { console.log("renderList error:", e); }
+}
+
+function replyApp(em, nm) {
+  var s=encodeURIComponent("[KIT 임상병리과] 입학상담 안내 - "+nm+"님");
+  var b=encodeURIComponent(nm+"님 안녕하세요.\n\n경남정보대학교 임상병리과 성인별도반 입학상담 신청 감사합니다.\n\n\n경남정보대학교 임상병리과 드림");
+  window.location.href="mailto:"+em+"?subject="+s+"&body="+b;
+}
+function markRead(id) { if(_db) _db.collection("applications").doc(id).update({status:"read"}).catch(function(){}); }
+function delApp(id) { if(!confirm("삭제하시겠습니까?"))return; if(_db) _db.collection("applications").doc(id).delete().catch(function(){}); }
+
+// DOMContentLoaded 로 모든 이벤트 등록
+document.addEventListener("DOMContentLoaded", function() {
+  // 네비 탭
+  document.getElementById("bniHome").addEventListener("click", function(){goPage("home");});
+  document.getElementById("bniChecker").addEventListener("click", function(){goPage("checker");});
+  document.getElementById("bniRef").addEventListener("click", function(){goPage("ref");});
+  document.getElementById("bniApply").addEventListener("click", function(){goPage("apply");});
+  // 홈 버튼
+  document.getElementById("btnHeroApply").addEventListener("click", function(){goPage("apply");});
+  document.getElementById("btnHeroChecker").addEventListener("click", function(){goPage("checker");});
+  document.getElementById("qaChecker").addEventListener("click", function(){goPage("checker");});
+  document.getElementById("qaApply").addEventListener("click", function(){goPage("apply");});
+  // 분석
+  document.getElementById("btnAnalyze").addEventListener("click", analyze);
+  // 신청
+  document.getElementById("btnApply").addEventListener("click", submitApply);
+  // 관심분야
+  var iis = document.querySelectorAll(".ii");
+  for (var i=0; i<iis.length; i++) {
+    iis[i].addEventListener("click", function(){this.classList.toggle("on");});
+  }
+  // 참고수치 탭
+  var rtabs = document.querySelectorAll(".rtab");
+  for (var i=0; i<rtabs.length; i++) {
+    rtabs[i].addEventListener("click", function(){
+      var p = this.getAttribute("data-ref");
+      document.querySelectorAll(".rtab").forEach(function(t){t.classList.remove("on");});
+      document.querySelectorAll(".rpnl").forEach(function(x){x.classList.remove("on");});
+      this.classList.add("on");
+      var pnl = document.querySelector(".rpnl[data-p=\""+p+"\"]");
+      if(pnl) pnl.classList.add("on");
+    });
+  }
+  // 관리자
+  document.getElementById("btnAdm").addEventListener("click", function(){
+    document.getElementById("adm-ov").classList.add("on");
+    if(_loggedIn) renderDash();
+  });
+  document.getElementById("btnCloseAdm").addEventListener("click", function(){document.getElementById("adm-ov").classList.remove("on");});
+  document.getElementById("adm-ov").addEventListener("click", function(e){if(e.target===this)this.classList.remove("on");});
+  document.getElementById("btnLogin").addEventListener("click", function(){
+    if(document.getElementById("admPw").value===_ADMIN_PW){
+      _loggedIn=true;
+      document.getElementById("admLogin").style.display="none";
+      document.getElementById("admDash").style.display="block";
+      renderDash();
+    } else {
+      alert("비밀번호가 올바르지 않습니다.");
+      document.getElementById("admPw").value="";
+    }
+  });
+  document.getElementById("admPw").addEventListener("keydown", function(e){if(e.key==="Enter")document.getElementById("btnLogin").click();});
+  document.getElementById("btnLogout").addEventListener("click", function(){
+    _loggedIn=false;
+    document.getElementById("admLogin").style.display="block";
+    document.getElementById("admDash").style.display="none";
+    document.getElementById("admPw").value="";
+  });
+  // 필터
+  document.getElementById("fltAll").addEventListener("click", function(){_flt="all";document.querySelectorAll(".fb").forEach(function(b){b.classList.remove("on");});this.classList.add("on");renderList(_flt);});
+  document.getElementById("fltNew").addEventListener("click", function(){_flt="new";document.querySelectorAll(".fb").forEach(function(b){b.classList.remove("on");});this.classList.add("on");renderList(_flt);});
+  document.getElementById("fltRead").addEventListener("click", function(){_flt="read";document.querySelectorAll(".fb").forEach(function(b){b.classList.remove("on");});this.classList.add("on");renderList(_flt);});
+  // CSV
+  document.getElementById("btnCsv").addEventListener("click", function(){
+    if(!_apps.length){alert("내보낼 데이터가 없습니다.");return;}
+    var hdr="이름,연락처,이메일,성별,학력,직업,관심분야,신청일,상태";
+    var rows=_apps.map(function(a){return [a.name,a.phone,a.email,a.gender,a.edu,a.job,a.interests,a.date,a.status].map(function(v){return '"'+(v||"").replace(/"/g,'""')+'"';}).join(",");});
+    var blob=new Blob(["\uFEFF"+hdr+"\n"+rows.join("\n")],{type:"text/csv;charset=utf-8;"});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement("a");a.href=url;a.download="KIT_성인별도반.csv";a.click();URL.revokeObjectURL(url);
+  });
+    // Firebase 초기화
+  try {
+    var saved=localStorage.getItem(_FBKEY);
+    if(saved){
+      var cfg=JSON.parse(saved);
+      setFbs("ld","Firebase 재연결 중...");
+      loadFirebase(function(){initFb(cfg);});
+      return;
+    }
+  } catch(e) {}
+  setFbs("err","Firebase 미연결 - 이메일 전용 모드");
+});
+</script>
+</body>
+</html>
